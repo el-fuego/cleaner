@@ -14,10 +14,10 @@ class IRBarrierSensor {
     bool isNeedCalibration (bool hasBarrier);
   
   public:
-    int calibrationTimeout;
+    int calibrationInterval;
     float barrierLimitDeviation;
     
-    IRBarrierSensor(int _sensorPin, float _barrierLimitDeviation = 0.2, int _calibrationTimeout = 300);
+    IRBarrierSensor(int _sensorPin, float _barrierLimitDeviation = 0.15, int _calibrationInterval = 500);
 
     void calibrate ();
 
