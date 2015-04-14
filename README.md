@@ -27,6 +27,7 @@ https://vk.com/album16471782_185124159
 ##### Оптичний датчик перешкод
 * v1. Постійно увімкнений світлодіод (робота не стабільна) http://i.stack.imgur.com/HC4iL.jpg 
 * v2. Увімкнення світлодіода лише на час вимірювання (наразі тестується) https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR8r_yejtI-IzwuLMbHaclT2u_af_bMlZhbMC1efKo0DIavb5qpUg
+Розрахунки для вибору алгоритму https://docs.google.com/spreadsheets/d/12xX7K3GLwI0BPLQ0AKeEQVDjNHkFd4nQ7HoS5wBKhic/edit?usp=sharing
 
 
 #### Проблеми
