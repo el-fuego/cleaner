@@ -2,18 +2,18 @@
 #include "IRBarrierSensor.h"
 #include "Arduino.h"
 
-IRBarrierSensor::IRBarrierSensor(Pins _pins, float _sensivityLevel, int _measurementTime, float _calibrationLevel) : pins(_pins), sensivityLevel(_sensivityLevel), measurementTime(_measurementTime), calibrationLevel(_calibrationLevel) {}
+IRBarrierSensor::IRBarrierSensor(Pins _pins, float _sensivityLevel, int _measurementTimeMicroSeconds, float _calibrationLevel) : pins(_pins), sensivityLevel(_sensivityLevel), measurementTimeMicroSeconds(_measurementTimeMicroSeconds), calibrationLevel(_calibrationLevel) {}
 
 // Sensor values with LED turned off and on
 IRBarrierSensor::SensorValues IRBarrierSensor::readValues() {
   SensorValues values;
   // Add delay for short calls to turn off led (it is not high-speed)
-  if ( lastLedHighlightAt + measurementTime > millis()) {
-    delay(measurementTime);
+  if ( lastLedHighlightAt + measurementTimeMicroSeconds > micros()) {
+    delayMicroseconds(measurementTimeMicroSeconds);
   }
   values.dark = analogRead(pins.sensor);
   digitalWrite(pins.led, HIGH);
-  delay(measurementTime);
+  delayMicroseconds(measurementTimeMicroSeconds);
   values.light = analogRead(pins.sensor);
   digitalWrite(pins.led, LOW);
   
@@ -23,9 +23,8 @@ IRBarrierSensor::SensorValues IRBarrierSensor::readValues() {
 }
 
 // Deviation of lightness to determine barrier
-float IRBarrierSensor::getDeviation(SensorValues values) {
-  //float correction = (defaultValues.dark - values.dark) * defaultValues.light / defaultValues.dark;
-  float correction = defaultValues.dark - values.dark;
+float IRBarrierSensor::lightValuesDeviation(SensorValues values) {
+  float correction = (defaultValues.dark - values.dark) * defaultValues.light / defaultValues.dark;
   return 1 - (values.light / (defaultValues.light - correction));
 }
 
@@ -35,8 +34,9 @@ bool IRBarrierSensor::isCalibrated () {
 }
 
 // Is need runtime calibration
+// true if default and current sensor values is differs more than calibrationLevel
 bool IRBarrierSensor::isNeedCalibration (SensorValues values) {
-  return abs(values.dark - defaultValues.dark) / defaultValues.dark > calibrationLevel;
+  return abs(defaultValues.dark - values.dark) / defaultValues.dark > calibrationLevel;
 }
 
 // Set defaultValues
@@ -55,18 +55,21 @@ void IRBarrierSensor::calibrate () {
 float IRBarrierSensor::getRaw () {
   SensorValues values = readValues();
     
-  // first run
+  // calibrate sensor on power on
   if (!isCalibrated()) {
     calibrateSensor(values);
   }
-  float deviation = getDeviation(values);
+  float deviation = lightValuesDeviation(values);
   
   Serial.print("light: "); Serial.print(values.light);Serial.print(" / "); Serial.print(defaultValues.light);
   Serial.print(" ; dark: "); Serial.print(values.dark);Serial.print(" / "); Serial.print(defaultValues.dark);
   Serial.print(" ; deviation: "); Serial.println(deviation);
   
   bool hasBarrier = deviation > sensivityLevel;
-  if (isNeedCalibration(values) && !hasBarrier) {
+  
+  // calibrate sensor on lightness changes
+  // do not calibrate near to barrier 
+  if (!hasBarrier && isNeedCalibration(values)) {
     calibrateSensor(values);
   }
   

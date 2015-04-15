@@ -13,7 +13,7 @@ class IRBarrierSensor {
   };
   private:
     unsigned long lastLedHighlightAt = 0;
-    int measurementTime;
+    int measurementTimeMillis;
     float sensivityLevel, calibrationLevel;
     SensorValues defaultValues;
     
@@ -21,7 +21,7 @@ class IRBarrierSensor {
     SensorValues readValues();
     
     // Deviation of lightness to determine barrier
-    float getDeviation(SensorValues values);
+    float lightValuesDeviation(SensorValues values);
     
     // Is sensor already calibrated? For first run
     bool isCalibrated ();
@@ -33,7 +33,7 @@ class IRBarrierSensor {
     void calibrateSensor (SensorValues values);
   
   public:
-    IRBarrierSensor(Pins _pins, float _sensivityLevel = 0.05, int _measurementTime = 10, float _calibrationLevel = 0.1);
+    IRBarrierSensor(Pins _pins, float _sensivityLevel = 0.2, int _measurementTimeMillis = 1000, float _calibrationLevel = 0.05);
     
     Pins pins;
     

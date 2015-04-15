@@ -12,5 +12,8 @@ void setup() {
 void loop() {
   digitalWrite(LED_BUILTIN, barrierSensor.hasBarrier() ? HIGH : LOW);
   
-  delay(100);
+  delay(1);
+  if(barrierSensor.hasBarrier() ) {
+    Serial.println('----------BARRIER----------');
+  }
 }
