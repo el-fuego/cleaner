@@ -13,7 +13,7 @@ class IRBarrierSensor {
   };
   private:
     unsigned long lastLedHighlightAt = 0;
-    int measurementTimeMillis;
+    int measurementTimeMicroSeconds;
     float sensivityLevel, calibrationLevel;
     SensorValues defaultValues;
     
@@ -33,7 +33,7 @@ class IRBarrierSensor {
     void calibrateSensor (SensorValues values);
   
   public:
-    IRBarrierSensor(Pins _pins, float _sensivityLevel = 0.2, int _measurementTimeMillis = 1000, float _calibrationLevel = 0.05);
+    IRBarrierSensor(Pins _pins, float _sensivityLevel = 0.1, int _measurementTimeMicroSeconds = 1000, float _calibrationLevel = 0.05);
     
     Pins pins;
     
