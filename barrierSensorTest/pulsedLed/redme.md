@@ -8,7 +8,7 @@
  + Use less power<br/>
  + High sensivity (70mm at evening lights)<br/>
  + Can detect black objects (30mm at evening lights)<br/>
- + Can use getRaw() to check how far barrier is
+ + Can use getRaw() to check how far barrier is (slow down robot moving to stay closer to barrier and avoid collapse)
 
 #### Curcit
 ```
