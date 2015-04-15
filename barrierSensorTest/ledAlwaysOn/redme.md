@@ -16,7 +16,7 @@ Ain ---------^-+-( <-  Photodiode
 GND -------------( <-
 ```
 Vcc is +5V. <br/>
-Use higher LED resitor impedance for higher voltage 
+Use higher LED resitor impedance for higher voltage or lower for lower voltage
 
 #### Algorithm
 1. Calibrate sensor (store sensor value) on robot power ON and every n seconds (0.5 by defaults) if barrier is not detected

@@ -19,8 +19,8 @@ Vcc  --=200K=--
 Ain  ---------^-+-( <-  Photodiode
 GND  -------------( <-
 ```
-Vcc is +3..9V. <br/>
-For lager voltage 
+Vcc is +5V<br>
+Decrease measurement time for hight voltage and increase for low
 
 #### Algorithm
 1. Measure sensor values with LED turned OFF and ON
