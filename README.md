@@ -6,6 +6,14 @@
 https://vk.com/album16471782_185124159<br />
 <a href="https://vk.com/album16471782_185124159"><img src="https://cs7057.vk.me/c621326/v621326782/21478/YweVBZQj0hk.jpg" /></a>
 
+## Алгоритми
+<a href="https://github.com/el-fuego/cleaner/blob/master/barrierSensorTest/ledAlwaysOn/redme.md">
+  Сенсор перешкод з постійно увімкненим світлодіодом
+</a>
+<a href="https://github.com/el-fuego/cleaner/blob/master/barrierSensorTest/pulsedLed/redme.md">
+  Сенсор перешкод з блимаючим світлодіодом
+</a>
+
 ### Конструктив
 #### Електронні компоненти
 * Arduino Pro mini Mega 328 5v 16MHz (стабільний за напруги 3.7V) http://ru.aliexpress.com/item/2Pcs-Lot-Pro-Mini-Module-Atmega328-5V-16M-For-Arduino-Compatible-Nano/710618765.html
