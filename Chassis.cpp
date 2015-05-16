@@ -8,6 +8,11 @@ void Chassis::moveForward() {
   rightWheel.moveForward();
 }
 
+void Chassis::moveBackward() {
+  leftWheel.moveBackward();
+  rightWheel.moveBackward();
+}
+
 void Chassis::stopMoving() {
   leftWheel.stopMoving();
   rightWheel.stopMoving();

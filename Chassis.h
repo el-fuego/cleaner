@@ -12,6 +12,8 @@ class Chassis {
   
     void moveForward();
     
+    void moveBackward();
+    
     void stopMoving();
     
     void turnLeft(boolean isAroundWheel = true);
